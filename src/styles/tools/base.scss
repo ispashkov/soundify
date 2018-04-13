@@ -1,0 +1,121 @@
+@import 'variables';
+
+* {
+	box-sizing: border-box;
+	outline: none;
+}
+
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	&__main {
+		flex: 1 0 auto;
+	}
+
+	&__footer {
+		flex-shrink: 1;
+	}
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+	display: block;
+	margin: 2*$spacer 0 $spacer 0;
+	font-family: $font-family-base;
+	font-weight: 300;
+	color: $color-black;
+}
+
+h1,
+.heading_h1 {
+	font-size: 1.5*$font-size-base;
+
+	@include media-breakpoint-up(md) {
+		font-size: 2*$font-size-base;
+	}
+}
+
+h2,
+.heading_h2 {
+	font-size: 1.25*$font-size-base;
+
+	@include media-breakpoint-up(md) {
+		font-size: 1.75*$spacer;
+	}
+}
+
+h3,
+.heading_h3 {
+	font-size: $font-size-base;
+
+	@include media-breakpoint-up(md) {
+		font-size: 1.5*$spacer;
+	}
+}
+
+h4,
+.heading_h4 {
+	font-size: 1.25*$spacer;
+}
+
+h5,
+.heading_h5 {
+	font-size: 1*$spacer;
+	margin: 1.5*$spacer 0 0.5$spacer 0;
+}
+
+h6,
+.heading_h6 {
+	font-size: 0.75*$spacer;
+	margin: 0 0 0.5$spacer 0;
+}
+
+p {
+	display: block;
+	font-family: $font-family-base;
+	font-size: 0.875*$font-size-base;
+	line-height: $line-height-base;
+	color: $color-text;
+}
+
+a {
+	font-family: $font-family-base;
+	font-size: 0.825*$font-size-base;
+	color: $color-primary;
+	@include transition();
+
+	@include media-breakpoint-up(md) {
+		font-size: 0.875*$font-size-base;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: lighten($color-primary, 10%);
+	}
+
+	&:visited {
+		color: darken($color-primary, 10%);
+	}
+}

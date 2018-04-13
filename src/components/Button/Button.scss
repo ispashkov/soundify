@@ -1,0 +1,236 @@
+@import '~variables';
+
+%btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 32px;
+	padding: 0 12px;
+	border: 1px solid $color-gray;
+	background-color: lighten($color-gray, 20%);
+	color: $color-white;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 400;
+	@include appearance();
+	@include transition(0.1s);
+
+	&_state_hover,
+	&:hover:not(.btn_type_link) {
+		color: $color-white;
+		background-color: lighten($color-gray, 25%);
+	}
+
+	&_state_active,
+	&:active:not(.btn_type_link):not(.btn_type_outline) {
+		background-color: darken($color-gray, 5%);
+	}
+
+	&_color {
+		&_primary {
+			border-color: $color-primary;
+			background-color: lighten($color-primary, 20%);
+
+			&.btn_state_hover,
+			&:hover:not(.btn_type_link) {
+				background-color: lighten($color-primary, 25%);
+			}
+
+			&.btn_state_active,
+			&:active:not(.btn_type_link):not(.btn_type_outline) {
+				background-color: darken($color-primary, 5%);
+			}
+		}
+
+		&_accent {
+			border-color: $color-accent;
+			background-color: lighten($color-accent, 20%);
+
+			&.btn_state_hover,
+			&:hover:not(.btn_type_link) {
+				background-color: lighten($color-accent, 25%);
+			}
+
+			&.btn_state_active,
+			&:active:not(.btn_type_link):not(.btn_type_outline) {
+				background-color: darken($color-accent, 5%);
+			}
+		}
+	}
+
+	&_size {
+		&_small {
+			height: 28px;
+			padding: 0 8px;
+			font-size: 12px;
+			line-height: 16px;
+		}
+
+		&_large {
+			height: 36px;
+			padding: 0 14px;
+			font-size: 16px;
+			line-height: 18px;
+		}
+
+		&_xl {
+			height: 40px;
+			padding: 0 16px;
+			font-size: 18px;
+			line-height: 20px;
+		}
+	}
+
+	&_type {
+		&_link {
+			height: auto;
+			padding: 0;
+			background-color: transparent;
+			border-color: transparent;
+			color: $color-gray;
+
+			&:hover {
+				border-bottom: 1px solid currentColor;
+				background-color: transparent;
+				color: currentColor;
+			}
+
+			&.btn_color_primary {
+				color: $color-primary;
+			}
+
+			&.btn_color_accent {
+				color: $color-accent;
+			}
+		}
+
+		&_outline {
+			background-color: transparent;
+			color: $color-gray;
+
+			&:hover {
+				color: $color-white;
+			}
+
+			&:active {
+				background-color: $color-gray;
+				color: $color-white;
+			}
+
+			&.btn_color_primary {
+				color: $color-primary;
+			}
+
+			&.btn_color_accent {
+				color: $color-accent;
+			}
+		}
+	}
+
+	&_border {
+		&_rounded {
+			border-radius: 5px;
+		}
+
+		&_circle {
+			border-radius: 15px;
+		}
+	}
+
+	&_wide {
+		width: 100%;
+	}
+
+	&__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		fill: currentColor;
+
+		&_pos {
+			&_left {
+				margin-right: 8px;
+			}
+
+			&_right {
+				margin-left: 8px;
+			}
+		}
+	}
+}
+
+.btn {
+	@extend %btn;
+
+	&_state {
+		&_hover {
+			@extend %btn_state_hover;
+		}
+
+		&_active {
+			@extend %btn_state_active;
+		}
+	}
+
+	&_color {
+		&_primary {
+			@extend %btn_color_primary;
+		}
+
+		&_accent {
+			@extend %btn_color_accent;
+		}
+	}
+
+	&_size {
+		&_small {
+			@extend %btn_size_small;
+		}
+
+		&_large {
+			@extend %btn_size_large;
+		}
+
+		&_xl {
+			@extend %btn_size_xl;
+		}
+	}
+
+	&_type {
+		&_link {
+			@extend %btn_type_link;
+		}
+
+		&_outline {
+			@extend %btn_type_outline;
+		}
+	}
+
+	&_border {
+		&_rounded {
+			@extend %btn_border_rounded;
+		}
+
+		&_circle {
+			@extend %btn_border_circle;
+		}
+	}
+
+	&_wide {
+		@extend %btn_wide;
+	}
+
+	&__icon {
+		@extend %btn__icon;
+
+		&_pos {
+			&_left {
+				@extend %btn__icon_pos_left;
+			}
+
+			&_right {
+				@extend %btn__icon_pos_right;
+			}
+		}
+	}
+}

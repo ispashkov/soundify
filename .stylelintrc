@@ -1,0 +1,7 @@
+{
+	"rules": {
+		"indentation": "tab",
+		"number-leading-zero": null,
+		"string-quotes": "single"
+	}
+}

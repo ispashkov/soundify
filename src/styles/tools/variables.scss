@@ -1,0 +1,47 @@
+$spacer: 1rem;
+
+$grid-columns: 12;
+$grid-gutter-width: 1rem;
+
+// Fonts
+$font-family-base: 'Segoe UI', -apple-system, system-ui, Roboto,
+	BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+$color-primary: #0088bb;
+$color-accent: #1db954;
+$color-wait: #778899;
+$colorGray: #778899;
+$color-green: #1db954;
+$color-black: #191414;
+$color-text: #223344;
+$colorWhite: #fff;
+
+@mixin transition($x: 0.3s) {
+	transition: $x;
+}
+
+@mixin appearance() {
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-webkit-appearance: none;
+}
+
+@mixin icon($url, $width: $spacer, $height: $spacer) {
+	content: '';
+	display: inline-block;
+	width: $width * $spacer;
+	height: $height * $spacer;
+	background: {
+		image: url($url);
+		size: contain;
+		repeat: no-repeat;
+		position: center center;
+	}
+}
+
+//Z-INDEX
+$z-index-base: 10;
+$z-index-overlay: 90;
+$z-index-modal: 100;

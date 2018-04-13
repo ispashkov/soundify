@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> Render component Header 1`] = `
+<ApplyTheme>
+  <header
+    className="header"
+  >
+    <div
+      className="container header__container"
+    >
+      <div
+        className="header__logo"
+      />
+      <div
+        className="header-actions"
+      >
+        <React.Fragment>
+          <div
+            className="header__signup"
+          >
+            <Jss(Button)
+              block={false}
+              buttonType="button"
+              container={
+                <Link
+                  replace={false}
+                  title="Signup"
+                  to="/signup"
+                />
+              }
+              iconPosition="left"
+              rounded={true}
+              size="small"
+              type="secondary"
+            >
+              Sign Up
+            </Jss(Button)>
+          </div>
+          <div
+            className="header__login"
+          >
+            <Jss(Button)
+              block={false}
+              buttonType="button"
+              container={
+                <Link
+                  replace={false}
+                  title="Login"
+                  to="/login"
+                />
+              }
+              iconPosition="left"
+              rounded={true}
+              size="small"
+              type="primary"
+            >
+              Login
+            </Jss(Button)>
+          </div>
+        </React.Fragment>
+      </div>
+    </div>
+  </header>
+</ApplyTheme>
+`;
