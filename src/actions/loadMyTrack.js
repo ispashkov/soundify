@@ -1,17 +1,16 @@
-import axios from 'axios';
 import {
 	FETCH_TRACKS_START,
 	FETCH_TRACKS_SUCCESS,
 	FETCH_TRACKS_FAILURE
 } from './types';
 
-export default payload => async dispatch => {
+export default payload => async (dispatch, getState, api) => {
 	dispatch({
 		type: FETCH_TRACKS_START
 	});
 
 	try {
-		const tracks = await axios.get('http://localhost:8080/api/track', {
+		const tracks = await api.get('/track', {
 			options: payload
 		});
 

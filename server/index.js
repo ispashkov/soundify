@@ -2,7 +2,10 @@ import register from 'ignore-styles';
 register(['.sass', '.scss']);
 
 import express from 'express';
-import mongoose from 'mongoose';
+import proxy from 'express-http-proxy';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -11,47 +14,21 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import routes from '../src/routes';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import cors from 'cors';
-import path from 'path';
-import dotenv from 'dotenv';
-import userRoutes from './routes/user';
-import trackRoutes from './routes/track';
-import albumRoutes from './routes/album';
+
 import jwtDecode from 'jwt-decode';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 8080;
-
-mongoose
-	.connect(
-		`mongodb://${process.env.MONGODB_USER}:${
-			process.env.MONGODB_PSWD
-		}@ds239029.mlab.com:39029/soundify`,
-		{
-			useMongoClient: true
-		}
-	)
-	.once('open', () => {
-		app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
-	})
-	.on('error', error => console.log('Connection Error!', error));
-
-mongoose.Promise = global.Promise;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
+
+app.use(cookieParser());
+app.use('/api', proxy('http://localhost:8080'));
 
 app.set('view engine', 'twig');
 app.set('views', path.join(__dirname, '../src/layout/'));
 
-app.use(morgan('dev'));
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use('/favicon.ico', express.static(path.join(__dirname, '../favicon.ico')));
 app.use('/js', express.static(path.join(__dirname, '../build/js/')));
 app.use('/css', express.static(path.join(__dirname, '../build/css/')));
@@ -68,11 +45,6 @@ app.use((req, res, next) => {
 	}
 	next();
 });
-
-app.use('/api/uploads/', express.static(path.join(__dirname, '../uploads/')));
-app.use('/api/user', userRoutes);
-app.use('/api/track', trackRoutes);
-app.use('/api/album', albumRoutes);
 
 app.get('*', (req, res) => {
 	const store = createStore();
@@ -131,3 +103,5 @@ app.use((error, req, res) => {
 		}
 	});
 });
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

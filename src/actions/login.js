@@ -1,18 +1,17 @@
-import axios from 'axios';
 import { push } from 'react-router-redux';
 import Cookie from 'js-cookie';
 import setAutorizationToken from '../utils/setAutorizationToken';
 
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from './types';
 
-export default payload => async dispatch => {
+export default payload => async (dispatch, getState, api) => {
 	dispatch({
 		type: LOGIN_START,
 		payload
 	});
 
 	try {
-		const res = await axios.post('/api/user/login', payload);
+		const res = await api.post('/user/login', payload);
 
 		if (!res.data.token) {
 			return Promise.reject();

@@ -6,6 +6,12 @@ import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
 
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+	baseURL: 'http://localhost:8080'
+});
+
 export const history = createBrowserHistory();
 
 const logger = createLogger({
@@ -17,7 +23,13 @@ const initialState = window.__INITIAL_STATE__ && window.__INITIAL_STATE__;
 const store = createStore(
 	rootReducer,
 	initialState,
-	composeWithDevTools(applyMiddleware(thunk, logger, routerMiddleware(history)))
+	composeWithDevTools(
+		applyMiddleware(
+			thunk.withExtraArgument(axiosInstance),
+			logger,
+			routerMiddleware(history)
+		)
+	)
 );
 
 if (module.hot) {

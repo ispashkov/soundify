@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
 	ALBUM_CREATE_START,
 	ALBUM_CREATE_SUCCESS,
@@ -9,7 +8,7 @@ const config = {
 	headers: { 'Content-Type': 'application/json' }
 };
 
-export default payload => async dispatch => {
+export default payload => async (dispatch, getState, api) => {
 	const data = new FormData();
 	data.append('name', payload.albumName);
 	data.append('type', payload.albumType);
@@ -23,7 +22,7 @@ export default payload => async dispatch => {
 	});
 
 	try {
-		const res = await axios.post('/api/album/create', data, config);
+		const res = await api.post('/album/create', data, config);
 
 		dispatch({
 			type: ALBUM_CREATE_SUCCESS,

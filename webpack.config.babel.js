@@ -4,7 +4,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
-import ManifestPlugin from 'webpack-manifest-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -21,7 +20,6 @@ const plugins = [
 		}
 	}),
 	new SpriteLoaderPlugin()
-	// new ManifestPlugin(),
 ];
 
 isProd
@@ -98,7 +96,8 @@ export default {
 		historyApiFallback: true,
 		proxy: {
 			'/api': {
-				target: 'http://localhost:8080'
+				target: 'http://localhost:8080',
+				pathRewrite: { '^/api': '' }
 			}
 		}
 	},
@@ -111,12 +110,7 @@ export default {
 				test: /\.(js|jsx)?$/,
 				include: path.join(__dirname, './src'),
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'eslint-loader',
-						options: { configFile: path.resolve(__dirname, './.eslintrc') }
-					}
-				]
+				use: ['eslint-loader']
 			},
 			//---------------------JS----------------------//
 			{
@@ -208,7 +202,8 @@ export default {
 		modules: ['node_modules', 'assets'],
 		extensions: ['.js', '.jsx'],
 		alias: {
-			variables: path.resolve(__dirname, './src/styles/tools/variables.scss')
+			variables: path.resolve(__dirname, './src/styles/tools/variables.scss'),
+			'@': path.resolve(__dirname, './src')
 		}
 	}
 };
