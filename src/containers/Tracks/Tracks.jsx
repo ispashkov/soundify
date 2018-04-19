@@ -7,6 +7,7 @@ import './Tracks.scss';
 import loadMyTrack from '@/actions/loadMyTrack';
 
 import Track from '@/components/Track';
+import requireAuth from '@/utils/requireAuth';
 
 class Tracks extends Component {
 	static propTypes = {
@@ -63,4 +64,6 @@ export const loadData = store => {
 	return store.dispatch(loadMyTrack());
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tracks);
+export default connect(mapStateToProps, mapDispatchToProps)(
+	requireAuth(Tracks)
+);
