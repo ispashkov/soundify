@@ -202,7 +202,7 @@ export default {
 		extensions: ['.js', '.jsx'],
 		alias: {
 			variables: path.resolve(__dirname, './src/styles/tools/variables.scss'),
-			'@': path.resolve(__dirname, './src'),
+			'@': path.join(__dirname, './src')
 		}
 	}
 };

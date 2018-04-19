@@ -6,15 +6,15 @@ import proxy from 'express-http-proxy';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import path from 'path';
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import createStore from './store';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
-import routes from '../src/routes';
+import routes from '@/routes';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
-
 import jwtDecode from 'jwt-decode';
 
 dotenv.config();
@@ -104,4 +104,6 @@ app.use((error, req, res) => {
 	});
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, () =>
+	console.log(`Server listening on port ${PORT}, MODE: ${process.env.NODE_ENV}`)
+);

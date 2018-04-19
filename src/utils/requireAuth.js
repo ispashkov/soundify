@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 export default ChildComponent => {
 	class RequireAuth extends Component {
 		static propTypes = {
-			auth: PropTypes.boolean
+			auth: PropTypes.any
 		};
 
 		render() {

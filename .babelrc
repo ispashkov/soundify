@@ -10,5 +10,15 @@
 		],
 		"react",
 		"stage-0"
+	],
+	"plugins": [
+		[
+			"module-resolver",
+			{
+				"alias": {
+					"@": "./src"
+				}
+			}
+		]
 	]
 }
