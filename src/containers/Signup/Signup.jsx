@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import actionSignup from '../../actions/signup';
+import actionSignup from '@/actions/signup';
 import './Signup.scss';
 
-import SignupForm from '../../components/SignupForm';
+import SignupForm from '@/components/SignupForm';
 
 class SignupContainer extends Component {
 	static propTypes = {

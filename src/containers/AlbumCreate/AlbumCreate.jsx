@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import './AlbumCreate.scss';
 
-import AlbumCreateForm from '../../components/AlbumCreateForm';
-import actionAlbumCreate from '../../actions/album';
+import AlbumCreateForm from '@/components/AlbumCreateForm';
+import actionAlbumCreate from '@/actions/album';
 
 class AlbumCreate extends Component {
 	static propTypes = {

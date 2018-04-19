@@ -1,4 +1,4 @@
-@import '~variables';
+@import 'variables';
 
 .login {
 	display: flex;
@@ -25,6 +25,6 @@
 	}
 
 	&__submit {
-		margin-bottom: 0.75*$spacer;
+		margin-bottom: 0.75 * $spacer;
 	}
 }

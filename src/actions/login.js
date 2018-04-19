@@ -1,6 +1,6 @@
 import { push } from 'react-router-redux';
 import Cookie from 'js-cookie';
-import setAutorizationToken from '../utils/setAutorizationToken';
+import setAutorizationToken from '@/utils/setAutorizationToken';
 
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from './types';
 

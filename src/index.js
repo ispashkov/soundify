@@ -4,15 +4,15 @@ import { renderRoutes } from 'react-router-config';
 import { Helmet } from 'react-helmet';
 import { ConnectedRouter as Router } from 'react-router-redux';
 import { Provider } from 'react-redux';
-import store, { history } from './store';
-import setAutorizationToken from './utils/setAutorizationToken';
+import store, { history } from '@/store';
+import setAutorizationToken from '@/utils/setAutorizationToken';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
 import jwtDecode from 'jwt-decode';
 import Cookie from 'js-cookie';
 
 import './styles/app.scss';
 
-import routes from './routes';
+import routes from '@/routes';
 
 export default class Root extends Component {
 	render() {

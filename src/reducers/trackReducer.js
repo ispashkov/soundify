@@ -2,7 +2,7 @@ import {
 	FETCH_TRACKS_START,
 	FETCH_TRACKS_SUCCESS,
 	FETCH_TRACKS_FAILURE
-} from '../actions/types';
+} from '@/actions/types';
 
 const initialState = {
 	items: [],

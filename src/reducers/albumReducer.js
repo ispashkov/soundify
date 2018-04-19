@@ -2,7 +2,7 @@ import {
 	ALBUM_CREATE_START,
 	ALBUM_CREATE_SUCCESS,
 	ALBUM_CREATE_FAILURE
-} from '../actions/types';
+} from '@/actions/types';
 
 const initialState = {
 	loading: false

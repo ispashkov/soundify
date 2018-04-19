@@ -7,7 +7,7 @@ import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const isProd = process.env.NODE_ENV === 'production';
-const publicPath = 'http://localhost:3000/';
+const publicPath = '/';
 const plugins = [
 	new webpack.ProvidePlugin({
 		$: 'jquery',
@@ -35,8 +35,7 @@ isProd
 		new HtmlWebpackPlugin({
 			favicon: 'favicon.ico',
 			filename: 'index.html',
-			chunks: ['main', 'commons'],
-			inject: false,
+			chunks: ['main', 'vendors'],
 			template: path.join(__dirname, './src/index.twig')
 		}),
 		new webpack.HotModuleReplacementPlugin()
@@ -203,7 +202,7 @@ export default {
 		extensions: ['.js', '.jsx'],
 		alias: {
 			variables: path.resolve(__dirname, './src/styles/tools/variables.scss'),
-			'@': path.resolve(__dirname, './src')
+			'@': path.resolve(__dirname, './src'),
 		}
 	}
 };

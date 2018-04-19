@@ -1,8 +1,8 @@
-@import '~variables';
+@import 'variables';
 
 .header {
 	display: block;
-	padding: 1.25*$spacer 0;
+	padding: 1.25 * $spacer 0;
 	background-color: $colorWhite;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
@@ -14,7 +14,7 @@
 	&__logo {
 		display: inline-block;
 		padding: 0.5rem 1rem;
-		width: 7*$spacer;
+		width: 7 * $spacer;
 		background-color: $colorGray;
 	}
 
@@ -28,7 +28,7 @@
 	&__signup,
 	&__logout {
 		display: inline-flex;
-		margin-left: 1*$spacer;
+		margin-left: 1 * $spacer;
 		&:first-child {
 			margin-left: 0;
 		}

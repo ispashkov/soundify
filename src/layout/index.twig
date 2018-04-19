@@ -20,8 +20,10 @@
   {{ initialState }}
   <div id='root-app' class='app'>{{ renderHTML }}</div>
 
+	{% if ssrStyle %}
   <script type="text/javascript" src="/js/vendors.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
+	{% endif %}
 </body>
 
 </html>

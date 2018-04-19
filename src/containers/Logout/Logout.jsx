@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import logout from '../../actions/logout';
+import logout from '@/actions/logout';
 
 class Logout extends Component {
 	static propTypes = {

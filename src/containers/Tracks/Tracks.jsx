@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import './Tracks.scss';
 
-import loadMyTrack from '../../actions/loadMyTrack';
+import loadMyTrack from '@/actions/loadMyTrack';
 
-import Track from '../../components/Track';
+import Track from '@/components/Track';
 
 class Tracks extends Component {
 	static propTypes = {

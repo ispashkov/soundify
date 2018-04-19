@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Header from '../components/Header';
+import Header from '@/components/Header';
 
 const userProps = {
 	isLoggedIn: false,

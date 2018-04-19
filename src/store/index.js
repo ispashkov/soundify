@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
-import rootReducer from '../reducers';
+import rootReducer from '@/reducers';
 
 import axios from 'axios';
 

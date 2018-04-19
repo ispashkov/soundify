@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import actionLogin from '../../actions/login';
+import actionLogin from '@/actions/login';
 import './Login.scss';
 
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '@/components/LoginForm';
 
 class LoginContainer extends Component {
 	static propTypes = {

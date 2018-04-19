@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Home.scss';
 
-import Header from '../../components/Header';
+import Header from '@/components/Header';
 
 class HomeContainer extends Component {
 	static propTypes = {
