@@ -37,7 +37,7 @@ if (Cookie.get('auth_token')) {
 	setAutorizationToken(Cookie.get('auth_token'));
 	store.dispatch({
 		type: 'LOGIN_SUCCESS',
-		user: jwtDecode(Cookie.get('auth_token'))
+		user: jwtDecode(Cookie.get('auth_token').split(' ')[1])
 	});
 }
 
