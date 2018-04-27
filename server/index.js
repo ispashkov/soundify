@@ -14,6 +14,7 @@ import createStore from './store';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import routes from '@/routes';
+import setAutorizationToken from '@/utils/setAutorizationToken';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
 import jwtDecode from 'jwt-decode';
 import assets from '../build/build-manifest.json';
@@ -43,6 +44,10 @@ app.use((req, res, next) => {
 });
 
 app.get('*', (req, res) => {
+	if (req.cookies['auth_token']) {
+		setAutorizationToken(req.cookies['auth_token']);
+	}
+
 	const store = createStore();
 
 	if (req.cookies.auth_token) {
@@ -76,6 +81,7 @@ app.get('*', (req, res) => {
 
 		// Grab the initial state from our Redux store
 		const preloadedState = store.getState();
+
 		// Send the rendered page back to the client
 		res.send(renderHTML(HTML, assets, preloadedState, jss));
 	});

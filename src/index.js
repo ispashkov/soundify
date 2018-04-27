@@ -45,7 +45,7 @@ if (Cookie.get('auth_token')) {
 hydrate(<Root />, document.getElementById('root-app'), () => {
 	const styles = document.getElementById('server-styles');
 	if (styles) {
-		// styles.parentNode.removeChild(styles);
+		styles.parentNode.removeChild(styles);
 	}
 });
 
