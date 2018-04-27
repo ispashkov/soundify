@@ -92,9 +92,19 @@ const renderHTML = (HTML, assets, preloadedState, jss) => `
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name='viewport' content="initial-scale=1.0, width=device-width">
+		<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<meta name="theme-color" content="#323233">
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic'>
+		<meta name="apple-mobile-web-app-title" content="Soundify App">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#315efb">
+		<link rel="apple-touch-startup-image" href="${assets['favicon.ico']}">
+		<link rel="apple-touch-icon" href="${assets['favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="152x152" href="${assets['favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="180x180" href="${assets['favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="167x167" href="${assets['favicon.ico']}">
+		
 		<link rel="manifest" href="${assets['manifest.json']}">
 		<link rel="shortcut icon" href="${assets['favicon.ico']}">
 		<link rel="stylesheet" href="${assets['bundle.css']}">
