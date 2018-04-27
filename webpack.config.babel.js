@@ -5,6 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import ManifestPlugin from 'webpack-manifest-plugin';
+import WebpackPwaManifest from 'webpack-pwa-manifest';
 
 const isProd = process.env.NODE_ENV === 'production';
 const publicPath = '/';
@@ -19,25 +21,47 @@ const plugins = [
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 		}
 	}),
-	new HtmlWebpackPlugin({
-		favicon: 'favicon.ico',
-		filename: 'index.html',
-		chunks: ['main', 'vendors'],
-		template: path.join(__dirname, './src/index.twig')
+
+	new SpriteLoaderPlugin(),
+	new ManifestPlugin({
+		fileName: 'build-manifest.json'
 	}),
-	new SpriteLoaderPlugin()
+	new WebpackPwaManifest({
+		filename: 'manifest.json',
+		name: 'Soundify App',
+		orientation: 'portrait',
+		display: 'standalone',
+		start_url: '.',
+		short_name: 'Soundify',
+		description: 'Streaming Music Service',
+		background_color: '#ffffff',
+		icons: [
+			{
+				src: path.resolve('favicon.ico'),
+				sizes: ['96'] // multiple sizes
+			}
+		]
+	})
 ];
 
 isProd
 	? plugins.push(
 		new ExtractTextPlugin({
-			filename: 'css/styles.css',
+			filename: 'css/styles.[chunkhash].css',
 			allChunks: true
 		}),
 		new CleanWebpackPlugin(['./build'])
 		// new BundleAnalyzerPlugin()
 	  )
-	: plugins.push(new webpack.HotModuleReplacementPlugin());
+	: plugins.push(
+		new webpack.HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({
+			favicon: 'favicon.ico',
+			filename: 'index.html',
+			chunks: ['bundle', 'vendors'],
+			template: path.join(__dirname, './src/index.twig')
+		})
+	  );
 
 const style = isProd
 	? ExtractTextPlugin.extract({
@@ -58,12 +82,12 @@ const style = isProd
 export default {
 	mode: isProd ? 'production' : 'development',
 	entry: {
-		main: ['babel-polyfill', path.join(__dirname, './src/index.js')]
+		bundle: ['babel-polyfill', path.join(__dirname, './src/index.js')]
 	},
 	output: {
 		path: path.join(__dirname, './build'),
 		publicPath,
-		filename: 'js/[name].js'
+		filename: 'js/[name].[hash].js'
 	},
 	target: 'web',
 	optimization: {

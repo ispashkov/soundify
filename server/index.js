@@ -16,6 +16,7 @@ import { renderRoutes, matchRoutes } from 'react-router-config';
 import routes from '@/routes';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
 import jwtDecode from 'jwt-decode';
+import assets from '../build/build-manifest.json';
 
 dotenv.config();
 
@@ -26,12 +27,7 @@ const app = express();
 app.use(cookieParser());
 app.use('/api', proxy('http://localhost:8080'));
 
-app.set('view engine', 'twig');
-app.set('views', path.join(__dirname, '../src/layout/'));
-
-app.use('/favicon.ico', express.static(path.join(__dirname, '../favicon.ico')));
-app.use('/js', express.static(path.join(__dirname, '../build/js/')));
-app.use('/css', express.static(path.join(__dirname, '../build/css/')));
+app.use(express.static(path.join(__dirname, '../build/')));
 
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -65,8 +61,9 @@ app.get('*', (req, res) => {
 		let context = {};
 
 		const sheetsRegistry = createSheetsRegistry();
+		const jss = sheetsRegistry.toString();
 
-		const renderHTML = renderToString(
+		const HTML = renderToString(
 			<Provider store={store}>
 				<StaticRouter location={req.path} context={context}>
 					<ApplyTheme sheetsRegistry={sheetsRegistry}>
@@ -79,15 +76,30 @@ app.get('*', (req, res) => {
 		// Grab the initial state from our Redux store
 		const preloadedState = store.getState();
 		// Send the rendered page back to the client
-		res.render('index', {
-			renderHTML,
-			initialState: `<script type="text/javascript">
-				window.__INITIAL_STATE__ = ${JSON.stringify(preloadedState)}
-			</script>`,
-			ssrStyle: `<style type='text/css' id='server-styles'>${sheetsRegistry.toString()}</style>`
-		});
+		res.send(renderHTML(HTML, assets, preloadedState, jss));
 	});
 });
+
+const renderHTML = (HTML, assets, preloadedState, jss) => `
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic'>
+		<link rel="manifest" href="${assets['manifest.json']}">
+		<link rel="shortcut icon" href="${assets['favicon.ico']}">
+		<link rel="stylesheet" href="${assets['bundle.css']}">
+		<style type='text/css' id='server-styles'>${jss}</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.__INITIAL_STATE__ = ${JSON.stringify(preloadedState)}
+		</script>
+		<div id="root-app" class='app'>${HTML}</div>
+		<script type="text/javascript" src="${assets['vendors.js']}"></script>
+		<script type="text/javascript" src="${assets['bundle.js']}"></script>
+	</body>
+</html>`;
 
 app.use((req, res, next) => {
 	const error = new Error('Not found');
@@ -104,6 +116,4 @@ app.use((error, req, res) => {
 	});
 });
 
-app.listen(PORT, () =>
-	console.log(`Server listening on port ${PORT}, MODE: ${process.env.NODE_ENV}`)
-);
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

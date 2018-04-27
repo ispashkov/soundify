@@ -77,7 +77,9 @@
 		"webpack": "^4.1.1",
 		"webpack-bundle-analyzer": "^2.11.1",
 		"webpack-cli": "^2.0.10",
-		"webpack-dev-server": "^3.1.0"
+		"webpack-dev-server": "^3.1.0",
+		"webpack-manifest-plugin": "^2.0.1",
+		"webpack-pwa-manifest": "^3.6.2"
 	},
 	"dependencies": {
 		"axios": "^0.18.0",

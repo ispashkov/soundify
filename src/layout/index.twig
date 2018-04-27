@@ -3,6 +3,7 @@
 
 <head>
   <meta charset='utf-8'>
+	{% block title %} {% endblock %}
   <meta name='description' content=''>
   <meta name='keywords' content=''>
   <meta name='robots' content=''>
@@ -10,20 +11,10 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic'>
-  {% if ssrStyle %}<link rel="stylesheet" href="/css/styles.css">{% endif %}
-	{{ ssrStyle }}
-  {% block title %} {% endblock %}
 </head>
 
 <body>
-  
-  {{ initialState }}
-  <div id='root-app' class='app'>{{ renderHTML }}</div>
-
-	{% if ssrStyle %}
-  <script type="text/javascript" src="/js/vendors.js"></script>
-  <script type="text/javascript" src="/js/main.js"></script>
-	{% endif %}
+  <div id='root-app' class='app'>Hello World</div>
 </body>
 
 </html>
