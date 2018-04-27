@@ -7,6 +7,7 @@ import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
+import OfflinePlugin from 'offline-plugin';
 
 const isProd = process.env.NODE_ENV === 'production';
 const publicPath = '/';
@@ -21,7 +22,6 @@ const plugins = [
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 		}
 	}),
-
 	new SpriteLoaderPlugin(),
 	new ManifestPlugin({
 		fileName: 'build-manifest.json'
@@ -29,18 +29,39 @@ const plugins = [
 	new WebpackPwaManifest({
 		filename: 'manifest.json',
 		name: 'Soundify App',
-		orientation: 'portrait',
+		orientation: 'landscape',
 		display: 'standalone',
 		start_url: '.',
 		short_name: 'Soundify',
 		description: 'Streaming Music Service',
 		background_color: '#ffffff',
+		ios: true,
+		inject: true,
 		icons: [
 			{
-				src: path.resolve('favicon.ico'),
-				sizes: ['96'] // multiple sizes
+				src: path.resolve('./src/assets/icon.png'),
+				sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
 			}
 		]
+	}),
+	new OfflinePlugin({
+		safeToUseOptionalCaches: true,
+
+		externals: ['/'],
+
+		ServiceWorker: {
+			events: true,
+			navigateFallbackURL: '/',
+			publicPath: '/sw.js'
+		},
+
+		AppCache: {
+			events: true,
+			publicPath: '/appcache',
+			FALLBACK: {
+				'/': '/'
+			}
+		}
 	})
 ];
 
@@ -56,7 +77,6 @@ isProd
 	: plugins.push(
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			favicon: 'favicon.ico',
 			filename: 'index.html',
 			chunks: ['bundle', 'vendors'],
 			template: path.join(__dirname, './src/index.twig')
@@ -110,6 +130,7 @@ export default {
 	plugins,
 	devServer: {
 		contentBase: path.join(__dirname, './build/'),
+		https: true,
 		port: 3000,
 		noInfo: true,
 		overlay: true,
@@ -177,6 +198,19 @@ export default {
 						options: {
 							limit: 8192,
 							name: 'assets/images/[name].[ext]',
+							publicPath
+						}
+					}
+				]
+			},
+			{
+				test: /\.ico$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192,
+							name: '[name].[ext]',
 							publicPath
 						}
 					}
