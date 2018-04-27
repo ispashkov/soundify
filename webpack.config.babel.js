@@ -19,6 +19,12 @@ const plugins = [
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 		}
 	}),
+	new HtmlWebpackPlugin({
+		favicon: 'favicon.ico',
+		filename: 'index.html',
+		chunks: ['main', 'vendors'],
+		template: path.join(__dirname, './src/index.twig')
+	}),
 	new SpriteLoaderPlugin()
 ];
 
@@ -31,30 +37,22 @@ isProd
 		new CleanWebpackPlugin(['./build'])
 		// new BundleAnalyzerPlugin()
 	  )
-	: plugins.push(
-		new HtmlWebpackPlugin({
-			favicon: 'favicon.ico',
-			filename: 'index.html',
-			chunks: ['main', 'vendors'],
-			template: path.join(__dirname, './src/index.twig')
-		}),
-		new webpack.HotModuleReplacementPlugin()
-	  );
+	: plugins.push(new webpack.HotModuleReplacementPlugin());
 
 const style = isProd
 	? ExtractTextPlugin.extract({
 		fallback: 'style-loader',
 		use: [
-			{ loader: 'css-loader', options: { sourceMap: true, minimize: true } },
-			{ loader: 'postcss-loader', options: { sourceMap: true } },
-			{ loader: 'sass-loader', options: { sourceMap: true } }
+			{ loader: 'css-loader', options: { minimize: true } },
+			{ loader: 'postcss-loader' },
+			{ loader: 'sass-loader' }
 		]
 	  })
 	: [
-		{ loader: 'style-loader', options: { sourceMap: true } },
+		{ loader: 'style-loader' },
 		{ loader: 'css-loader', options: { sourceMap: true } },
-		{ loader: 'postcss-loader', options: { sourceMap: true } },
-		{ loader: 'sass-loader', options: { sourceMap: true } }
+		{ loader: 'postcss-loader' },
+		{ loader: 'sass-loader' }
 	  ];
 
 export default {
