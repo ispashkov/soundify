@@ -85,6 +85,8 @@ const renderHTML = (HTML, assets, preloadedState, jss) => `
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta name='viewport' content="initial-scale=1.0, width=device-width">
+		<meta name="theme-color" content="#323233">
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=cyrillic'>
 		<link rel="manifest" href="${assets['manifest.json']}">
 		<link rel="shortcut icon" href="${assets['favicon.ico']}">

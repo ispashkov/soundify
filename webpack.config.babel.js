@@ -35,6 +35,7 @@ const plugins = [
 		short_name: 'Soundify',
 		description: 'Streaming Music Service',
 		background_color: '#ffffff',
+		theme_color: '#315efb',
 		ios: true,
 		inject: true,
 		icons: [
@@ -130,7 +131,6 @@ export default {
 	plugins,
 	devServer: {
 		contentBase: path.join(__dirname, './build/'),
-		https: true,
 		port: 3000,
 		noInfo: true,
 		overlay: true,

@@ -49,10 +49,8 @@ hydrate(<Root />, document.getElementById('root-app'), () => {
 	}
 });
 
+install();
+
 if (module.hot) {
 	module.hot.accept();
-}
-
-if (process.env.NODE_ENV === 'production') {
-	install();
 }
