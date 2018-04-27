@@ -61,7 +61,6 @@ app.get('*', (req, res) => {
 		let context = {};
 
 		const sheetsRegistry = createSheetsRegistry();
-		const jss = sheetsRegistry.toString();
 
 		const HTML = renderToString(
 			<Provider store={store}>
@@ -72,6 +71,8 @@ app.get('*', (req, res) => {
 				</StaticRouter>
 			</Provider>
 		);
+
+		const jss = sheetsRegistry.toString();
 
 		// Grab the initial state from our Redux store
 		const preloadedState = store.getState();
