@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from '@/store';
 import history from '@/utils/history';
 import setAutorizationToken from '@/utils/setAutorizationToken';
-import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
+import { ApplyTheme } from 'rambler-ui/theme';
 import jwtDecode from 'jwt-decode';
 import Cookie from 'js-cookie';
 import { install } from 'offline-plugin/runtime';
@@ -20,7 +20,7 @@ export default class Root extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<ApplyTheme sheetsRegistry={createSheetsRegistry()}>
+				<ApplyTheme>
 					<Fragment>
 						<Helmet>
 							<title>Soundify App</title>
