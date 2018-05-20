@@ -17,7 +17,7 @@ import routes from '@/routes';
 import setAutorizationToken from '@/utils/setAutorizationToken';
 import { ApplyTheme, createSheetsRegistry } from 'rambler-ui/theme';
 import jwtDecode from 'jwt-decode';
-import assets from '../build/build-manifest.json';
+import assets from '../build/static/build-manifest.json';
 
 dotenv.config();
 
@@ -28,7 +28,7 @@ const app = express();
 app.use(cookieParser());
 app.use('/api', proxy('http://localhost:8080'));
 
-app.use(express.static(path.join(__dirname, '../build/')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -99,14 +99,14 @@ const renderHTML = (HTML, assets, preloadedState, jss) => `
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="#315efb">
-		<link rel="apple-touch-startup-image" href="${assets['favicon.ico']}">
-		<link rel="apple-touch-icon" href="${assets['favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="152x152" href="${assets['favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="180x180" href="${assets['favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="167x167" href="${assets['favicon.ico']}">
+		<link rel="apple-touch-startup-image" href="${assets['static/favicon.ico']}">
+		<link rel="apple-touch-icon" href="${assets['static/favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="152x152" href="${assets['static/favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="180x180" href="${assets['static/favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="167x167" href="${assets['static/favicon.ico']}">
 		
-		<link rel="manifest" href="${assets['manifest.json']}">
-		<link rel="shortcut icon" href="${assets['favicon.ico']}">
+		<link rel="manifest" href="${assets['static/manifest.json']}">
+		<link rel="shortcut icon" href="${assets['static/favicon.ico']}">
 		<link rel="stylesheet" href="${assets['bundle.css']}">
 		<style type='text/css' id='server-styles'>${jss}</style>
 	</head>
