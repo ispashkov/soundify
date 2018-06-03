@@ -10,16 +10,9 @@
     "watch": "webpack -w --mode production",
     "server": "nodemon --watch server --exec babel-node -- server/index.js",
     "server:prod": "cross-env NODE_ENV=production babel-node server",
-    "test": "jest --watch",
+    "test": "jest --watchAll",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:css": "stylelint ./src/**/*.scss --fix"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test.config.js",
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
-    }
   },
   "author": "Ilya Pashkov",
   "license": "ISC",

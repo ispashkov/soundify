@@ -5,6 +5,9 @@ import Logout from '@/containers/Logout';
 import UserProfile from '@/containers/User';
 import Tracks, { loadData } from '@/containers/Tracks';
 import AlbumCreate from '@/containers/AlbumCreate';
+import PlayerPage from '@/pages/Player';
+import PlayerPlaylist from '@/components/PlayerPlaylist';
+import PlayerSongs from '@/components/PlayerSongs';
 
 export default [
 	{
@@ -36,5 +39,19 @@ export default [
 	{
 		path: '/album/create',
 		component: AlbumCreate
+	},
+	{
+		path: '/player',
+		component: PlayerPage,
+		routes: [
+			{
+				path: '/player/playlists',
+				component: PlayerPlaylist
+			},
+			{
+				path: '/player/songs',
+				component: PlayerSongs
+			}
+		]
 	}
 ];

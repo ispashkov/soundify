@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
@@ -10,7 +10,6 @@ import WebpackPwaManifest from 'webpack-pwa-manifest';
 import OfflinePlugin from 'offline-plugin';
 
 export default (env, { mode }) => {
-
 	const publicPath = '/';
 	const isProd = mode === 'production';
 
@@ -48,44 +47,44 @@ export default (env, { mode }) => {
 				{
 					src: path.resolve('src/assets/icon.png'),
 					sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
-					destination: path.join('static'),
+					destination: path.join('static')
 				}
 			]
-		}),
-		new OfflinePlugin({
-			safeToUseOptionalCaches: true,
-
-			externals: ['/'],
-
-			ServiceWorker: {
-				events: true,
-				navigateFallbackURL: '/',
-				publicPath: '/sw.js'
-			},
-
-			AppCache: {
-				events: true,
-				publicPath: '/appcache',
-				FALLBACK: {
-					'/': '/'
-				}
-			}
 		})
 	];
 
 	isProd
 		? plugins.push(
 			// new BundleAnalyzerPlugin(),
-			new CleanWebpackPlugin(['build'])
-		)
+			new CleanWebpackPlugin(['build']),
+			new OfflinePlugin({
+				safeToUseOptionalCaches: true,
+
+				externals: ['/'],
+
+				ServiceWorker: {
+					events: true,
+					navigateFallbackURL: '/',
+					publicPath: '/sw.js'
+				},
+
+				AppCache: {
+					events: true,
+					publicPath: '/appcache',
+					FALLBACK: {
+						'/': '/'
+					}
+				}
+			})
+		  )
 		: plugins.push(
 			new webpack.HotModuleReplacementPlugin(),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				chunks: ['bundle', 'vendors'],
 				template: path.resolve('src/index.twig')
-			}),
-		);
+			})
+		  );
 
 	return {
 		entry: {
@@ -119,7 +118,6 @@ export default (env, { mode }) => {
 		devServer: {
 			contentBase: path.resolve('build'),
 			port: 3000,
-			noInfo: true,
 			overlay: true,
 			hot: true,
 			historyApiFallback: true,
@@ -166,9 +164,12 @@ export default (env, { mode }) => {
 					test: /\.(sass|scss|css)$/,
 					use: [
 						isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-						{ loader: 'css-loader', options: { minimize: isProd, sourceMap: true } },
+						{
+							loader: 'css-loader',
+							options: { minimize: isProd, sourceMap: true }
+						},
 						{ loader: 'postcss-loader', options: { sourceMap: true } },
-						{ loader: 'sass-loader', options: { sourceMap: true } },
+						{ loader: 'sass-loader', options: { sourceMap: true } }
 					]
 				},
 				//--------------------Fonts--------------------//
@@ -244,4 +245,4 @@ export default (env, { mode }) => {
 			}
 		}
 	};
-} 
+};

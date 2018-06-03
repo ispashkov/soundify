@@ -1,0 +1,29 @@
+@import 'variables';
+
+.s-sidebar {
+	display: block;
+	height: 100%;
+	padding: 1.25rem;
+	background-color: $color-wait;
+
+	&__logo {
+		color: $color-primary;
+	}
+
+	&-nav {
+		display: block;
+
+		&__link {
+			display: block;
+			padding: 0.625rem 0 0.5rem;
+			color: $color-primary;
+			font-size: 1.25rem;
+			font-weight: 500;
+			text-decoration: none;
+
+			&:hover {
+				color: rgba($color-primary, 0.75);
+			}
+		}
+	}
+}

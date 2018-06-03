@@ -1,1 +1,10 @@
-
+.page-home {
+	display: flex;
+	flex-direction: column;
+	&__banner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+	}
+}
