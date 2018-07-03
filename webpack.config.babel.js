@@ -93,7 +93,6 @@ export default (env, { mode }) => {
 		output: {
 			path: path.resolve('build'),
 			filename: 'static/js/[name].[hash].js',
-			chunkFilename: 'static/js/[name].[hash].chunk.js',
 			publicPath
 		},
 		target: 'web',

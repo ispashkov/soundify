@@ -12,14 +12,15 @@ $line-height-base: 1.5;
 $color-primary: #315efb;
 $color-accent: #1db954;
 $color-wait: #f5f7f8;
-$colorGray: #778899;
+$colorGray: #343b4c;
+$color-danger: #ff564e;
 $color-green: #1db954;
 $color-black: #191414;
 $color-text: #223344;
 $colorWhite: #fff;
 
 @mixin transition($x: 0.3s) {
-	transition: $x;
+	transition: $x linear;
 }
 
 @mixin appearance() {

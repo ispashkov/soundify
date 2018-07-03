@@ -6,13 +6,17 @@ import actionSignup from '@/actions/signup';
 import './Signup.scss';
 
 import SignupForm from '@/components/SignupForm';
+import Fade from '@/transitions/fade';
+import { ERROR_CLEAR } from '@/actions/types';
 
 class SignupContainer extends Component {
 	static propTypes = {
 		actionSignup: PropTypes.func.isRequired,
 		user: PropTypes.object.isRequired,
+		error: PropTypes.object,
 		formData: PropTypes.object,
-		history: PropTypes.object
+		history: PropTypes.object,
+		closeNotify: PropTypes.func.isRequired
 	};
 
 	constructor() {
@@ -39,6 +43,10 @@ class SignupContainer extends Component {
 		this.props.history.goBack();
 	};
 
+	handleCloseNotify = () => {
+		this.props.closeNotify();
+	}
+
 	render() {
 		const { email, password } = this.state;
 
@@ -57,7 +65,9 @@ class SignupContainer extends Component {
 								handleChange={this.handleChange}
 								handleSubmit={this.handleSubmit}
 								handleCancel={this.handleCancel}
+								handleCloseNotify={this.handleCloseNotify}
 								loading={this.props.user.loading}
+								warning={this.props.user.error}
 							/>
 						</div>
 					</div>
@@ -73,7 +83,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	actionSignup: payload => dispatch(actionSignup(payload))
+	actionSignup: payload => dispatch(actionSignup(payload)),
+	closeNotify: () => dispatch({ type: ERROR_CLEAR })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Fade(SignupContainer));

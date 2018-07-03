@@ -1,0 +1,98 @@
+{
+	"album": {
+		"album_type": "single",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/7d3WFRME3vBY2cgoP38RDo"
+				},
+				"href": "https://api.spotify.com/v1/artists/7d3WFRME3vBY2cgoP38RDo",
+				"id": "7d3WFRME3vBY2cgoP38RDo",
+				"name": "Lil Skies",
+				"type": "artist",
+				"uri": "spotify:artist:7d3WFRME3vBY2cgoP38RDo"
+			},
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/61qMnYXa1GxSBoV3IiYKjZ"
+				},
+				"href": "https://api.spotify.com/v1/artists/61qMnYXa1GxSBoV3IiYKjZ",
+				"id": "61qMnYXa1GxSBoV3IiYKjZ",
+				"name": "Yung Pinch",
+				"type": "artist",
+				"uri": "spotify:artist:61qMnYXa1GxSBoV3IiYKjZ"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/3ePXj0CUe57ImxD0g97CRd"
+		},
+		"href": "https://api.spotify.com/v1/albums/3ePXj0CUe57ImxD0g97CRd",
+		"id": "3ePXj0CUe57ImxD0g97CRd",
+		"images": [
+			{
+				"height": 640,
+				"url":
+					"https://i.scdn.co/image/78deb188cc89b8f8c9a7ccf907f76702cac86dc8",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url":
+					"https://i.scdn.co/image/c6d11ab003f31ebcba679a8b7b04d78c4cf86746",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url":
+					"https://i.scdn.co/image/7d7bdff96bcf87a1e2791265cd2594671e399355",
+				"width": 64
+			}
+		],
+		"name": "I Know You (feat. Yung Pinch)",
+		"release_date": "2018-05-31",
+		"release_date_precision": "day",
+		"type": "album",
+		"uri": "spotify:album:3ePXj0CUe57ImxD0g97CRd"
+	},
+	"artists": [
+		{
+			"external_urls": {
+				"spotify": "https://open.spotify.com/artist/7d3WFRME3vBY2cgoP38RDo"
+			},
+			"href": "https://api.spotify.com/v1/artists/7d3WFRME3vBY2cgoP38RDo",
+			"id": "7d3WFRME3vBY2cgoP38RDo",
+			"name": "Lil Skies",
+			"type": "artist",
+			"uri": "spotify:artist:7d3WFRME3vBY2cgoP38RDo"
+		},
+		{
+			"external_urls": {
+				"spotify": "https://open.spotify.com/artist/61qMnYXa1GxSBoV3IiYKjZ"
+			},
+			"href": "https://api.spotify.com/v1/artists/61qMnYXa1GxSBoV3IiYKjZ",
+			"id": "61qMnYXa1GxSBoV3IiYKjZ",
+			"name": "Yung Pinch",
+			"type": "artist",
+			"uri": "spotify:artist:61qMnYXa1GxSBoV3IiYKjZ"
+		}
+	],
+	"disc_number": 1,
+	"duration_ms": 211200,
+	"explicit": true,
+	"external_ids": {
+		"isrc": "USAT21802510"
+	},
+	"external_urls": {
+		"spotify": "https://open.spotify.com/track/5Cg98kiDYtCEHmjcKD0CJD"
+	},
+	"href": "https://api.spotify.com/v1/tracks/5Cg98kiDYtCEHmjcKD0CJD",
+	"id": "5Cg98kiDYtCEHmjcKD0CJD",
+	"is_playable": true,
+	"name": "I Know You (feat. Yung Pinch)",
+	"popularity": 52,
+	"preview_url":
+		"https://p.scdn.co/mp3-preview/86c35014a80bcd31ab9182949eac3e6ec8f159cb?cid=d8a5ed958d274c2e8ee717e6a4b0971d",
+	"track_number": 1,
+	"type": "track",
+	"uri": "spotify:track:5Cg98kiDYtCEHmjcKD0CJD"
+}

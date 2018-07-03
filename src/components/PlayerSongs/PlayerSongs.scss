@@ -3,5 +3,77 @@
 .s-track {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-	grid-row-gap: 2rem;
+
+	&-item {
+		display: flex;
+		align-items: stretch;
+		padding: 0.5rem;
+		transition: background-color 0.2s ease;
+
+		&:hover {
+			background-color: $color-primary;
+			color: $colorWhite;
+
+			.s-track-item__explicit {
+				background-color: $color-danger;
+			}
+		}
+
+		&-action {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex: 1 0 3rem;
+			max-width: 3rem;
+		}
+
+		&-name {
+			flex: 1 1 100%;
+			max-width: 100%;
+		}
+
+		&__duration {
+			justify-self: flex-end;
+		}
+
+		&__title {
+			display: block;
+			margin: 0 0 0.25rem;
+		}
+
+		&__album {
+			cursor: pointer;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		&-artists {
+			display: flex;
+			align-items: center;
+
+			&__item {
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&__explicit {
+			display: inline-flex;
+			align-items: baseline;
+			justify-content: center;
+			height: 1.5rem;
+			padding: 0 0.5rem;
+			margin-right: 0.5rem;
+			border-radius: 0.25rem;
+			background-color: $color-primary;
+			color: $colorWhite;
+			font-size: 0.75rem;
+			line-height: 1.5rem;
+			text-transform: uppercase;
+			transition: background-color 0.2s ease;
+		}
+	}
 }

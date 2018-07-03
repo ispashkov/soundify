@@ -10,7 +10,7 @@ const initialState = {
 	loading: false
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
 	switch (action.type) {
 	case FETCH_TRACKS_START:
 		return { ...state, loading: true };
@@ -26,4 +26,4 @@ export default function(state = initialState, action) {
 	default:
 		return state;
 	}
-}
+};

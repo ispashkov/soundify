@@ -5,6 +5,7 @@ import HomeBanner from '@/components/HomeBanner';
 import './Home.scss';
 
 import Header from '@/components/Header';
+import Fade from '@/transitions/fade';
 
 class HomeContainer extends Component {
 	static propTypes = {
@@ -29,4 +30,4 @@ const mapStateToProps = state => ({
 	user: state.user
 });
 
-export default connect(mapStateToProps)(HomeContainer);
+export default Fade(connect(mapStateToProps)(HomeContainer));

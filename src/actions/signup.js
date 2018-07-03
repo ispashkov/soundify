@@ -17,10 +17,10 @@ export default payload => async (dispatch, getState, api) => {
 		});
 
 		dispatch(push('/login'));
-	} catch (err) {
+	} catch (error) {
 		dispatch({
 			type: SIGNUP_FAILURE,
-			err
+			error: error.response.data
 		});
 	}
 };

@@ -1,3 +1,4 @@
+import Loadable from 'react-loadable';
 import HomeContainer from '@/containers/Home';
 import SignupContainer from '@/containers/Signup';
 import LoginContainer from '@/containers/Login';
@@ -7,7 +8,12 @@ import Tracks, { loadData } from '@/containers/Tracks';
 import AlbumCreate from '@/containers/AlbumCreate';
 import PlayerPage from '@/pages/Player';
 import PlayerPlaylist from '@/components/PlayerPlaylist';
-import PlayerSongs from '@/components/PlayerSongs';
+import Loading from '@/components/Loading';
+
+const PlayerSongs = Loadable({
+	loader: () => import('@/components/PlayerSongs'),
+	loading: Loading
+});
 
 export default [
 	{

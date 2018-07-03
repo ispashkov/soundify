@@ -6,6 +6,7 @@ import actionLogin from '@/actions/login';
 import './Login.scss';
 
 import LoginForm from '@/components/LoginForm';
+import Fade from '@/transitions/fade';
 
 class LoginContainer extends Component {
 	static propTypes = {
@@ -73,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
 	actionLogin: payload => dispatch(actionLogin(payload))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Fade(LoginContainer));
