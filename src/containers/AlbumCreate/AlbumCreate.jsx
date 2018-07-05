@@ -6,26 +6,31 @@ import './AlbumCreate.scss';
 
 import AlbumCreateForm from '@/components/AlbumCreateForm';
 import actionAlbumCreate from '@/actions/album';
+import actionUploadFile from '@/actions/file';
 
 class AlbumCreate extends Component {
 	static propTypes = {
 		albums: PropTypes.object,
 		formData: PropTypes.object,
 		history: PropTypes.object,
-		actionAlbumCreate: PropTypes.func
+		actionAlbumCreate: PropTypes.func,
+		actionUploadFile: PropTypes.func
 	};
 
 	state = {
 		albumName: null,
 		albumType: null,
-		albumTracks: []
+		albumPhoto: null,
+		albumTracks: [],
+		previewPhoto: null
 	};
 
 	handleSubmit = event => {
 		event.preventDefault();
 		this.props.actionAlbumCreate({
 			...this.props.formData.values,
-			albumTracks: this.state.albumTracks
+			albumTracks: this.state.albumTracks,
+			albumPhoto: this.state.albumPhoto
 		});
 	};
 
@@ -43,6 +48,16 @@ class AlbumCreate extends Component {
 		});
 	};
 
+	handlePhoto = async event => {
+		const photo = await this.props.actionUploadFile(event.target.files[0]);
+		this.setState(() => {
+			return {
+				albumPhoto: event.target.files[0],
+				previewPhoto: photo.data.file
+			};
+		});
+	};
+
 	handleChange = event => {
 		this.setState({
 			[event.target.name]: event.target.value
@@ -54,7 +69,13 @@ class AlbumCreate extends Component {
 	};
 
 	render() {
-		const { albumName, albumType, albumTracks } = this.state;
+		const {
+			albumName,
+			albumType,
+			albumPhoto,
+			albumTracks,
+			previewPhoto
+		} = this.state;
 
 		return (
 			<div className="album-create">
@@ -66,8 +87,11 @@ class AlbumCreate extends Component {
 					<AlbumCreateForm
 						albumName={albumName}
 						albumType={albumType}
+						albumPhoto={albumPhoto}
 						albumTracks={albumTracks}
+						previewPhoto={previewPhoto}
 						handleFile={this.handleFile}
+						handlePhoto={this.handlePhoto}
 						handleChange={this.handleChange}
 						handleAlbumType={this.handleAlbumType}
 						handleSubmit={this.handleSubmit}
@@ -86,7 +110,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	actionAlbumCreate: payload => dispatch(actionAlbumCreate(payload))
+	actionAlbumCreate: payload => dispatch(actionAlbumCreate(payload)),
+	actionUploadFile: payload => dispatch(actionUploadFile(payload))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumCreate);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AlbumCreate);

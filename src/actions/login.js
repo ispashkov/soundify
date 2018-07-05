@@ -11,7 +11,7 @@ export default payload => async (dispatch, getState, api) => {
 	});
 
 	try {
-		const res = await api.post('/user/login', payload);
+		const res = await api.post('/auth/login', payload);
 
 		if (!res.data.token) {
 			return Promise.reject();

@@ -10,7 +10,7 @@ export default payload => async (dispatch, getState, api) => {
 	});
 
 	try {
-		const tracks = await api.get('/track', {
+		const tracks = await api.get('/tracks', {
 			options: payload
 		});
 

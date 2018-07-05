@@ -9,7 +9,7 @@ export default payload => async (dispatch, getState, api) => {
 	});
 
 	try {
-		const res = await api.post('/user/signup', payload);
+		const res = await api.post('/auth/signup', payload);
 
 		dispatch({
 			type: SIGNUP_SUCCESS,

@@ -43,7 +43,7 @@ export default [
 		loadData
 	},
 	{
-		path: '/album/create',
+		path: '/albums/create',
 		component: AlbumCreate
 	},
 	{

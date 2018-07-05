@@ -124,6 +124,9 @@ export default (env, { mode }) => {
 				'/api': {
 					target: 'http://localhost:8080',
 					pathRewrite: { '^/api': '' }
+				},
+				'/uploads': {
+					target: 'http://localhost:8080'
 				}
 			}
 		},

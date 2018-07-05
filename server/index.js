@@ -27,6 +27,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use('/api', proxy('http://localhost:8080'));
+app.use('/uploads', proxy('http://localhost:8080/uploads'));
 
 app.use(express.static(path.join(__dirname, '../build')));
 
@@ -101,9 +102,15 @@ const renderHTML = (HTML, assets, preloadedState, jss) => `
 		<meta name="apple-mobile-web-app-status-bar-style" content="#315efb">
 		<link rel="apple-touch-startup-image" href="${assets['static/favicon.ico']}">
 		<link rel="apple-touch-icon" href="${assets['static/favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="152x152" href="${assets['static/favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="180x180" href="${assets['static/favicon.ico']}">
-		<link rel="apple-touch-icon" sizes="167x167" href="${assets['static/favicon.ico']}">
+		<link rel="apple-touch-icon" sizes="152x152" href="${
+	assets['static/favicon.ico']
+}">
+		<link rel="apple-touch-icon" sizes="180x180" href="${
+	assets['static/favicon.ico']
+}">
+		<link rel="apple-touch-icon" sizes="167x167" href="${
+	assets['static/favicon.ico']
+}">
 		
 		<link rel="manifest" href="${assets['static/manifest.json']}">
 		<link rel="shortcut icon" href="${assets['static/favicon.ico']}">

@@ -25,9 +25,11 @@ let AlbumCreateForm = ({
 	handleChange,
 	handleCancel,
 	handleFile,
+	handlePhoto,
 	albumName,
 	albumType,
 	albumTracks,
+	previewPhoto,
 	loading
 }) => (
 	<ApplyTheme>
@@ -56,36 +58,66 @@ let AlbumCreateForm = ({
 					component={Select}
 				/>
 			</FormGroup>
+			<FormGroup label="Album Photo">
+				{previewPhoto !== null && (
+					<img src={previewPhoto.url} alt={previewPhoto.filename} />
+				)}
+				<Field
+					name="albumPhoto"
+					type="file"
+					onChange={handlePhoto}
+					component={props => (
+						<Fragment>
+							<Button
+								buttonType="button"
+								type="primary"
+								block
+								loading={loading}
+								disabled={loading}
+								overlay={
+									<input
+										type="file"
+										onChange={props.input.onChange}
+										multiple={true}
+									/>
+								}
+							>
+								Upload Photo
+							</Button>
+						</Fragment>
+					)}
+				/>
+			</FormGroup>
 			<FormGroup label="Album Tracks">
 				{albumTracks.length > 0 &&
 					albumTracks.map((track, idx) => <div key={idx}>{track.name}</div>)}
-			</FormGroup>
 
-			<Field
-				name="albumTracks"
-				type="file"
-				onChange={handleFile}
-				component={props => (
-					<Fragment>
-						<Button
-							buttonType="button"
-							type="primary"
-							block
-							loading={loading}
-							disabled={loading}
-							overlay={
-								<input
-									type="file"
-									onChange={props.input.onChange}
-									multiple={true}
-								/>
-							}
-						>
-							Upload Track
-						</Button>
-					</Fragment>
-				)}
-			/>
+				<Field
+					name="albumTracks"
+					type="file"
+					onChange={handleFile}
+					component={props => (
+						<Fragment>
+							<Button
+								buttonType="button"
+								type="primary"
+								block
+								loading={loading}
+								disabled={loading}
+								overlay={
+									<input
+										type="file"
+										onChange={props.input.onChange}
+										multiple={true}
+									/>
+								}
+							>
+								Upload Track
+							</Button>
+						</Fragment>
+					)}
+				/>
+			</FormGroup>
 
 			<Button
 				buttonType="submit"
@@ -107,12 +139,15 @@ AlbumCreateForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	albumName: PropTypes.any,
 	albumType: PropTypes.any,
+	albumPhoto: PropTypes.any,
 	albumTracks: PropTypes.any,
 	handleChange: PropTypes.func.isRequired,
 	handleAlbumType: PropTypes.func.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
 	handleCancel: PropTypes.func.isRequired,
 	handleFile: PropTypes.func.isRequired,
+	handlePhoto: PropTypes.func.isRequired,
+	previewPhoto: PropTypes.any,
 	input: PropTypes.object
 };
 

@@ -12,9 +12,10 @@ export default payload => async (dispatch, getState, api) => {
 	const data = new FormData();
 	data.append('name', payload.albumName);
 	data.append('type', payload.albumType);
+	data.append('photo', payload.albumPhoto);
 
 	payload.albumTracks.forEach(track => {
-		data.append('photo', track);
+		data.append('tracks', track);
 	});
 
 	dispatch({
@@ -22,7 +23,7 @@ export default payload => async (dispatch, getState, api) => {
 	});
 
 	try {
-		const res = await api.post('/album/create', data, config);
+		const res = await api.post('/albums/create', data, config);
 
 		dispatch({
 			type: ALBUM_CREATE_SUCCESS,
