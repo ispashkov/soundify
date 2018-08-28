@@ -82,7 +82,7 @@ export default (env, { mode }) => {
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				chunks: ['bundle', 'vendors'],
-				template: path.resolve('src/index.twig')
+				template: path.resolve('index.html')
 			})
 		  );
 
@@ -148,22 +148,9 @@ export default (env, { mode }) => {
 					exclude: /node_modules/,
 					use: ['babel-loader']
 				},
-				//---------------------VUE----------------------//
-				{
-					test: /\.vue?$/,
-					use: 'vue-loader'
-				},
-				//---------------------TWIG-------------------//
-				{
-					test: /\.twig$/,
-					loader: 'twig-loader',
-					options: {
-						rethrow: false
-					}
-				},
 				//---------------------Styles---------------------//
 				{
-					test: /\.(sass|scss|css)$/,
+					test: /\.(sa|sc|c)ss$/,
 					use: [
 						isProd ? MiniCssExtractPlugin.loader : 'style-loader',
 						{

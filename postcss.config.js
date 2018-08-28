@@ -1,12 +1,10 @@
 module.exports = {
-	plugins: {
-		autoprefixer: { browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] },
-		precss: {},
-		cssnano: { zindex: false },
-		'postcss-flexbugs-fixes': {
-			browsers: ['> 1%', 'last 2 versions', 'ie >= 11']
-		},
-		'postcss-sorting': {},
-		'postcss-cssnext': { browsers: ['> 1%', 'last 2 versions'] }
-	}
+	plugins: [
+		require('autoprefixer')({ grid: true }),
+		require('postcss-preset-env'),
+		require('precss')({}),
+		require('cssnano')({ zindex: false }),
+		require('postcss-flexbugs-fixes'),
+		require('postcss-sorting')({})
+	]
 };
