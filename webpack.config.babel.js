@@ -88,7 +88,7 @@ export default (env, { mode }) => {
 
 	return {
 		entry: {
-			bundle: ['babel-polyfill', path.resolve('src/index.js')]
+			bundle: ['@babel/polyfill', path.resolve('src/index.js')]
 		},
 		output: {
 			path: path.resolve('build'),

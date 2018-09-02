@@ -37,5 +37,10 @@
 				"extensions": [".js", ".jsx"]
 			}
 		]
+	},
+	"settings": {
+		"react": {
+			"version": "16.3.2"
+		}
 	}
 }
